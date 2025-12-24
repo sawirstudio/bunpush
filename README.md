@@ -27,3 +27,7 @@ docker run -d --name bunpush -p 3000:3000 sawirstudio/bunpush:latest
 ```bash
 bun --bun index.ts
 ```
+
+## License
+
+BunPush is released under the [O'Saasy License](LICENSE.md).
