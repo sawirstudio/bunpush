@@ -1,0 +1,7 @@
+services:
+  bunpush:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sawirstudio/bunpush:latest
+    platform: "linux/amd64"

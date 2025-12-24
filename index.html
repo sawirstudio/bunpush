@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<head>
+  <title>BunPush | Modern Realtime solution that doesn't make you sweat</title>
+  <meta
+    name="description"
+    content="BunPush is a modern realtime solution. It's fast, reliable, and easy to use. Simply use Pusher's API and you're good to go."
+  />
+  <style>
+    /* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+      display: block;
+    }
+    body {
+      line-height: 1;
+    }
+    ol,
+    ul {
+      list-style: none;
+    }
+    blockquote,
+    q {
+      quotes: none;
+    }
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+      content: "";
+      content: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-ZNFFQSDVY1"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-ZNFFQSDVY1");
+  </script>
+</head>
+<body style="font-family: sans-serif">
+  <h1 style="text-align: center; font-size: xx-large; margin-top: 5rem">
+    BunPush
+  </h1>
+  <p style="text-align: center; margin-top: 2rem">
+    Modern Realtime solution that doesn't make you sweat<br />Simply use
+    Pusher's API and you're good to go.
+  </p>
+  <p style="text-align: center; margin-top: 2rem">
+    Try publishing an event to channel <code>my-channel</code> with event name
+    <code>my-event</code>.
+  </p>
+  <div style="text-align: center; margin-top: 2rem">
+    <button onclick="pushEvent()">Push</button>
+  </div>
+  <footer style="text-align: center; margin-top: 2rem">
+    <nav style="display: flex; justify-content: center">
+      <a href="https://github.com/sawirstudio/bunpush">GitHub</a>
+    </nav>
+    <p>
+      Built by <a href="https://x.com/ricardosawir">Ricardo Sawir</a> from
+      <a href="https://sawirstudio.com">Sawir Studio</a>. Made with my 👰‍♀️ and my
+      👶🏻 right before 🎄🌟 Christmas. (2025-12-24)
+    </p>
+  </footer>
+
+  <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@hiseb/confetti@2.1.0/dist/confetti.min.js"></script>
+
+  <script>
+    Pusher.logToConsole = true;
+    let pusher = new Pusher("456", {
+      cluster: "ap1",
+      wsHost: "bunpush.com",
+      forceTLS: false,
+      encrypted: true,
+      enabledStats: true,
+      enabledTransports: ["ws", "wss"],
+    });
+
+    var channel = pusher.subscribe("my-channel");
+    channel.bind("my-event", function (data) {
+      alert(JSON.stringify(data));
+    });
+    function pushEvent() {
+      fetch("/api/test-trigger");
+      confetti();
+    }
+  </script>
+</body>
