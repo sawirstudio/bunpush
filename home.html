@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      BunPush | Modern Realtime solution that doesn't make you sweat
+    </title>
+    <meta
+      name="description"
+      content="BunPush is a modern realtime solution. It's fast, reliable, and easy to use. Simply use new Websocket('ws://your-url.com/channels/my-channel/subscribe') and you're good to go."
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZNFFQSDVY1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-ZNFFQSDVY1");
+    </script>
+  </head>
+  <body>
+    <h1 style="text-align: center; font-size: xx-large; margin-top: 5rem">
+      BunPush
+    </h1>
+
+    <p style="text-align: center; margin-top: 2rem">
+      Modern Realtime solution that doesn't make you sweat<br />Simply use new
+      Websocket('ws://your-url.com/channels/my-channel/subscribe')
+    </p>
+    <p style="text-align: center; margin-top: 2rem">
+      Try publishing an event to channel <code>my-channel</code> with event name
+      <code>my-event</code>.
+    </p>
+
+    <div style="text-align: center; margin-top: 2rem">
+      <button onclick="fetch('/test')">Push</button>
+    </div>
+
+    <footer style="text-align: center; margin-top: 2rem">
+      <nav style="display: flex; justify-content: center">
+        <a href="https://github.com/sawirstudio/bunpush">GitHub</a>
+      </nav>
+      <p>
+        Built by <a href="https://x.com/ricardosawir">Ricardo Sawir</a> from
+        <a href="https://sawirstudio.com">Sawir Studio</a>. Made with my 👰‍♀️ and
+        my 👶🏻 right before 🎄🌟 Christmas. (2025-12-24)
+      </p>
+    </footer>
+    <script>
+      const ws = new WebSocket(
+        "ws://localhost:3000/channels/my-channel/subscribe"
+      );
+      ws.addEventListener("message", async ({ data }) => {
+        if (data instanceof Blob) {
+          const text = await data.text();
+          try {
+            const data = JSON.parse(text);
+            alert(JSON.stringify(data));
+          } catch (e) {
+            console.error({ e, text });
+          }
+        }
+      });
+      ws.addEventListener("open", (e) => {
+        setInterval(() => {
+          if (ws.readyState === WebSocket.OPEN) {
+            ws.send("ping");
+          }
+        }, 110_000);
+      });
+      ws.addEventListener("close", () => {
+        console.log("close");
+      });
+      ws.addEventListener("error", (e) => {
+        console.error("error", e);
+      });
+    </script>
+  </body>
+</html>

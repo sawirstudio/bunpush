@@ -5,8 +5,8 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun --bun --watch index.ts",
-    "build": "bun build ./index.ts --production --target=bun-linux-x64 --compile --outfile bunpush"
+    "start": "bun --bun --watch server.ts",
+    "build": "bun build ./server.ts --target=bun-linux-x64 --production --compile --outfile bunpush"
   },
   "keywords": [],
   "author": "",
