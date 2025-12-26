@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "bun --bun --watch server.ts",
-    "build": "bun build ./server.ts --target=bun-linux-x64 --production --compile --outfile bunpush"
+    "build": "bun --bun build ./server.ts --target=bun-linux-x64 --production --compile --outfile bunpush"
   },
   "keywords": [],
   "author": "",
