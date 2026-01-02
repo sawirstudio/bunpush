@@ -45,18 +45,12 @@ const server = serve({
           return new Response("Unauthorized", { status: 401 });
         }
         server.publish(req.params.channel, await req.arrayBuffer());
-        return new Response("OK", {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "POST, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type",
-          },
-        });
+        return new Response("OK");
       },
       OPTIONS: () => {
         return new Response("", {
           headers: {
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
             "Access-Control-Allow-Methods": "POST, OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type",
           },
