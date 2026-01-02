@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <!-- <OutputType></OutputType> -->
+        <TargetFramework>net10.0</TargetFramework>
+        <PublishRelease>true</PublishRelease>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+        <UseAppHost>true</UseAppHost>
+        <RuntimeIdentifiers>
+            win-x64;osx-x64;linux-x64
+        </RuntimeIdentifiers>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+</Project>
